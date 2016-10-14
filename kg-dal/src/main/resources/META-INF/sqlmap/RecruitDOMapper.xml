@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charles.dal.dao.RecruitDOMapper" >
+  <resultMap id="BaseResultMap" type="com.charles.dal.dataobject.RecruitDO" >
+    <id column="recruitid" property="recruitid" jdbcType="INTEGER" />
+    <result column="parentcategory" property="parentcategory" jdbcType="INTEGER" />
+    <result column="categoryid" property="categoryid" jdbcType="INTEGER" />
+    <result column="parentkind" property="parentkind" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="canceltime" property="canceltime" jdbcType="TIMESTAMP" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="minage" property="minage" jdbcType="INTEGER" />
+    <result column="maxage" property="maxage" jdbcType="INTEGER" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="workertreatment" property="workertreatment" jdbcType="VARCHAR" />
+    <result column="workercount" property="workercount" jdbcType="INTEGER" />
+    <result column="workerexperience" property="workerexperience" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="discountunit" property="discountunit" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="contactphone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="workarea" property="workarea" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="addrlongitude" property="addrlongitude" jdbcType="VARCHAR" />
+    <result column="addrlatitude" property="addrlatitude" jdbcType="VARCHAR" />
+    <result column="workid" property="workid" jdbcType="INTEGER" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="jobtype" property="jobtype" jdbcType="VARCHAR" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recruitid, parentcategory, categoryid, parentkind, kind, name, pubtime, endtime, 
+    starttime, canceltime, duration, gender, minage, maxage, education, workertreatment, 
+    workercount, workerexperience, discount, discountunit, userid, contact, contactphone, 
+    addr, workarea, `describe`, addrlongitude, addrlatitude, workid, reason, imgurl, state, 
+    jobtype, usertype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_recruit
+    where recruitid = #{recruitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_recruit
+    where recruitid = #{recruitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.charles.dal.dataobject.RecruitDO" >
+    insert into t_recruit (recruitid, parentcategory, categoryid, 
+      parentkind, kind, name, 
+      pubtime, endtime, starttime, 
+      canceltime, duration, gender, 
+      minage, maxage, education, 
+      workertreatment, workercount, workerexperience, 
+      discount, discountunit, userid, 
+      contact, contactphone, addr, 
+      workarea, describe, addrlongitude, 
+      addrlatitude, workid, reason, 
+      imgurl, state, jobtype, 
+      usertype)
+    values (#{recruitid,jdbcType=INTEGER}, #{parentcategory,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
+      #{parentkind,jdbcType=VARCHAR}, #{kind,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{pubtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{canceltime,jdbcType=TIMESTAMP}, #{duration,jdbcType=INTEGER}, #{gender,jdbcType=VARCHAR}, 
+      #{minage,jdbcType=INTEGER}, #{maxage,jdbcType=INTEGER}, #{education,jdbcType=VARCHAR}, 
+      #{workertreatment,jdbcType=VARCHAR}, #{workercount,jdbcType=INTEGER}, #{workerexperience,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=DECIMAL}, #{discountunit,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{contact,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
+      #{workarea,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{addrlongitude,jdbcType=VARCHAR}, 
+      #{addrlatitude,jdbcType=VARCHAR}, #{workid,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{jobtype,jdbcType=VARCHAR}, 
+      #{usertype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.charles.dal.dataobject.RecruitDO" >
+    insert into t_recruit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recruitid != null" >
+        recruitid,
+      </if>
+      <if test="parentcategory != null" >
+        parentcategory,
+      </if>
+      <if test="categoryid != null" >
+        categoryid,
+      </if>
+      <if test="parentkind != null" >
+        parentkind,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pubtime != null" >
+        pubtime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="canceltime != null" >
+        canceltime,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="minage != null" >
+        minage,
+      </if>
+      <if test="maxage != null" >
+        maxage,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="workertreatment != null" >
+        workertreatment,
+      </if>
+      <if test="workercount != null" >
+        workercount,
+      </if>
+      <if test="workerexperience != null" >
+        workerexperience,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="discountunit != null" >
+        discountunit,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="contactphone != null" >
+        contactphone,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="workarea != null" >
+        workarea,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="addrlongitude != null" >
+        addrlongitude,
+      </if>
+      <if test="addrlatitude != null" >
+        addrlatitude,
+      </if>
+      <if test="workid != null" >
+        workid,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="jobtype != null" >
+        jobtype,
+      </if>
+      <if test="usertype != null" >
+        usertype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recruitid != null" >
+        #{recruitid,jdbcType=INTEGER},
+      </if>
+      <if test="parentcategory != null" >
+        #{parentcategory,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="parentkind != null" >
+        #{parentkind,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canceltime != null" >
+        #{canceltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="minage != null" >
+        #{minage,jdbcType=INTEGER},
+      </if>
+      <if test="maxage != null" >
+        #{maxage,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workertreatment != null" >
+        #{workertreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="workercount != null" >
+        #{workercount,jdbcType=INTEGER},
+      </if>
+      <if test="workerexperience != null" >
+        #{workerexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountunit != null" >
+        #{discountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="workarea != null" >
+        #{workarea,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="addrlongitude != null" >
+        #{addrlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="addrlatitude != null" >
+        #{addrlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="workid != null" >
+        #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        #{jobtype,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.charles.dal.dataobject.RecruitDO" >
+    update t_recruit
+    <set >
+      <if test="parentcategory != null" >
+        parentcategory = #{parentcategory,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        categoryid = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="parentkind != null" >
+        parentkind = #{parentkind,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        kind = #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canceltime != null" >
+        canceltime = #{canceltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="minage != null" >
+        minage = #{minage,jdbcType=INTEGER},
+      </if>
+      <if test="maxage != null" >
+        maxage = #{maxage,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workertreatment != null" >
+        workertreatment = #{workertreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="workercount != null" >
+        workercount = #{workercount,jdbcType=INTEGER},
+      </if>
+      <if test="workerexperience != null" >
+        workerexperience = #{workerexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountunit != null" >
+        discountunit = #{discountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        contactphone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="workarea != null" >
+        workarea = #{workarea,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="addrlongitude != null" >
+        addrlongitude = #{addrlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="addrlatitude != null" >
+        addrlatitude = #{addrlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="workid != null" >
+        workid = #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        jobtype = #{jobtype,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        usertype = #{usertype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recruitid = #{recruitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.charles.dal.dataobject.RecruitDO" >
+    update t_recruit
+    set parentcategory = #{parentcategory,jdbcType=INTEGER},
+      categoryid = #{categoryid,jdbcType=INTEGER},
+      parentkind = #{parentkind,jdbcType=VARCHAR},
+      kind = #{kind,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      canceltime = #{canceltime,jdbcType=TIMESTAMP},
+      duration = #{duration,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      minage = #{minage,jdbcType=INTEGER},
+      maxage = #{maxage,jdbcType=INTEGER},
+      education = #{education,jdbcType=VARCHAR},
+      workertreatment = #{workertreatment,jdbcType=VARCHAR},
+      workercount = #{workercount,jdbcType=INTEGER},
+      workerexperience = #{workerexperience,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DECIMAL},
+      discountunit = #{discountunit,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      contact = #{contact,jdbcType=VARCHAR},
+      contactphone = #{contactphone,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      workarea = #{workarea,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      addrlongitude = #{addrlongitude,jdbcType=VARCHAR},
+      addrlatitude = #{addrlatitude,jdbcType=VARCHAR},
+      workid = #{workid,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      jobtype = #{jobtype,jdbcType=VARCHAR},
+      usertype = #{usertype,jdbcType=VARCHAR}
+    where recruitid = #{recruitid,jdbcType=INTEGER}
+  </update>
+</mapper>

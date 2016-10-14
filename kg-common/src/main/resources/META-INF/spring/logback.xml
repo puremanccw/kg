@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>  
+<configuration scan="true" scanPeriod="30 seconds" debug="false">  
+	<property name="logRoot" value="/opt/logs/charles" />   
+
+	<!-- appender   -->
+	<appender name="CONSOLE-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8" />
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="DEFAULT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>D:/opt/logs/charles/default.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/opt/logs/charles/default.log.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="CONTROLLER-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>D:/opt/logs/charles/controller.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/opt/logs/charles/controller.log.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="DAEMON-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>D:/opt/logs/charles/daemon.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/opt/logs/charles/daemon.log.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="ERROR-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>D:/opt/logs/charles/error.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+			<level>ERROR</level>   
+			<onMatch>ACCEPT</onMatch>   
+			<onMismatch>DENY</onMismatch>   
+		</filter> 
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/opt/logs/charles/error.log.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<!-- logger -->  
+	<logger name="com.charles">
+		<level value="info" />
+	   <appender-ref ref="DEFAULT-APPENDER" />
+	</logger>
+	<logger name="controller" additivity="false">
+		<level value="info" />
+	   <appender-ref ref="CONTROLLER-APPENDER" />
+	</logger>
+	<logger name="daemon" additivity="false">
+		<level value="info" />
+	   <appender-ref ref="DAEMON-APPENDER" />
+	</logger>
+	<logger name="org.mybatis">
+		<level value="warn" />
+	</logger>
+	<logger name="java.sql">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.apache.commons">
+		<level value="warn" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="warn" />
+	</logger>
+	<logger name="com.charles.dal.dao" level="DEBUG"/>
+	<!-- root -->  
+	<root level="info">  
+		<appender-ref ref="CONSOLE-APPENDER" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />  
+		<appender-ref ref="CONTROLLER-APPENDER" />
+	</root>  
+</configuration>  

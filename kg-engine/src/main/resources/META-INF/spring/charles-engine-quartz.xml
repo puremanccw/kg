@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 集成方式：JobDetailFactoryBean,并且人物类需要继承QuartzJobBean -->
+	<!-- 定义jobDetail -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="durability" value="true"/>
+		<property name="jobClass" value="com.charles.engine.quartz.SpringQuartz"></property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="service">
+					<value>simple is the beat</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 定义simpleTrigger触发器 
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		
+	</bean>
+	-->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail"/>
+		<property name="cronExpression" value="0/10 * * * * ?"/>
+	</bean>
+	<!-- 定义核心调度器 -->
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<ref bean="cronTrigger"/>
+		</property>
+	</bean>
+</beans>
+		
